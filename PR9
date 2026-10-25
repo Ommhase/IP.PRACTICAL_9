@@ -1,0 +1,84 @@
+# --- Q1: Defining and Calling User-Defined Functions ---
+def welcome_msg():
+    print("Q1: Welcome to Python Functions!")
+welcome_msg()
+
+# --- Q2: Functions with Parameters ---
+def add_numbers(a, b):
+    print("Q2 Sum:", a + b)
+add_numbers(15, 25)
+
+# --- Q3: Functions with Return Values ---
+def square(n):
+    return n * n
+res = square(6)
+print("Q3 Square Returned:", res)
+
+# --- Q4: Default and Keyword Arguments ---
+def greet(name="Student", course="IT"):
+    print(f"Q4: Hello {name}, welcome to {course}!")
+greet()                                 # Default
+greet("Om", "BSc IT")                   # Positional
+greet(course="Data Science", name="Om") # Keyword
+
+# --- Q5: Built-in Functions Exploration ---
+sample_list = [10, 50, 30, 20, 40]
+print(f"Q5 Built-ins -> Len: {len(sample_list)}, Sum: {sum(sample_list)}, Max: {max(sample_list)}, Min: {min(sample_list)}")
+
+# --- Q6: Function for List Processing ---
+def analyze_list(lst):
+    return sum(lst), max(lst)
+s_val, m_val = analyze_list([4, 12, 8, 20])
+print(f"Q6 List Processing -> Sum: {s_val}, Largest: {m_val}")
+
+# --- Q7: Recursive Function - Factorial ---
+def fact_rec(n):
+    if n <= 1:
+        return 1
+    return n * fact_rec(n - 1)
+print("Q7 Recursive Factorial of 5:", fact_rec(5))
+
+# --- Q8: Recursive Fibonacci Series ---
+def fib_rec(n):
+    if n <= 1:
+        return n
+    return fib_rec(n - 1) + fib_rec(n - 2)
+print("Q8 Recursive Fibonacci (6 terms):", [fib_rec(i) for i in range(6)])
+
+# --- Q9: Function Calling Function ---
+def get_data():
+    return 10, 20
+def process_data():
+    x, y = get_data()
+    return x * y
+print("Q9 Function Calling Function Result:", process_data())
+
+# --- Q10: Variable Scope (Local vs Global) ---
+counter = 10
+def update_counter():
+    global counter
+    counter += 5
+update_counter()
+print("Q10 Global Counter Updated:", counter)
+
+# --- Q11: Menu-Driven Program using Functions ---
+def is_prime(n):
+    return n > 1 and all(n % i != 0 for i in range(2, int(n**0.5) + 1))
+
+choice = 2  # Simulated choice: 1=Add, 2=Prime Check, 3=Factorial
+if choice == 1:
+    add_numbers(5, 5)
+elif choice == 2:
+    print("Q11 Menu (Is 13 Prime?):", is_prime(13))
+elif choice == 3:
+    print("Q11 Menu Factorial:", fact_rec(4))
+
+# --- Q12: Real-World Problem - Student Result System ---
+def calc_result(marks_list):
+    total = sum(marks_list)
+    per = total / len(marks_list)
+    grade = "A" if per >= 75 else ("B" if per >= 50 else "Fail")
+    return total, per, grade
+
+tot, pct, grd = calc_result([80, 85, 90])
+print(f"Q12 Student Result -> Total: {tot}, Percentage: {pct:.2f}%, Grade: {grd}")

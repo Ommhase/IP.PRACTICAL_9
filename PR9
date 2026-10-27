@@ -1,238 +1,71 @@
-# ==========================================================
-# Question 1: Defining and Calling User-Defined Functions
-# ==========================================================
-print("--- Question 1 ---")
-def display_message():
-    print("Welcome to Python functions!")
+-- ==========================================================
+-- PRACTICAL 9: MYSQL DATABASE AND TABLE CREATION
+-- ==========================================================
 
-# Calling the function multiple times to observe reusability
-display_message()
-display_message()
-display_message()
+-- ==========================================================
+-- Question 1: Create Database
+-- ==========================================================
+CREATE DATABASE IF NOT EXISTS TechnologyPortal;
+USE TechnologyPortal;
 
 
-# ==========================================================
-# Question 2: Functions with Parameters
-# ==========================================================
-print("\n--- Question 2 ---")
-def add(a, b):
-    print("Sum =", a + b)
-
-add(10, 20)
-add(5, 7)
-
-
-# ==========================================================
-# Question 3: Functions with Return Values
-# ==========================================================
-print("\n--- Question 3 ---")
-def square(num):
-    return num * num
-
-result = square(5)
-print("Square =", result)
-print("Square + 10 =", result + 10)
+-- ==========================================================
+-- Question 2: Create Table
+-- ==========================================================
+CREATE TABLE IF NOT EXISTS technologies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    category VARCHAR(80) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
 
-# ==========================================================
-# Question 4: Default and Keyword Arguments
-# ==========================================================
-print("\n--- Question 4 ---")
-def student(name, age=18):
-    print(f"Name: {name}, Age: {age}")
-
-# Positional argument (uses default age = 18)
-student("Rahul")
-
-# Keyword arguments (order can be changed)
-student(age=20, name="Priya")
+-- ==========================================================
+-- Question 3: Display Structure
+-- ==========================================================
+DESCRIBE technologies;
+SHOW TABLES;
 
 
-# ==========================================================
-# Question 5: Built-in Functions Exploration
-# ==========================================================
-print("\n--- Question 5 ---")
-numbers = [10, 20, 30, 40, 50]
-text = "Python"
-
-# Built-in functions
-print("Length of list   :", len(numbers))
-print("Length of string :", len(text))
-print("Maximum in list  :", max(numbers))
-print("Minimum in list  :", min(numbers))
-print("Built-in sum     :", sum(numbers))
-
-# Manual sum comparison using loop
-manual_sum = 0
-for n in numbers:
-    manual_sum += n
-print("Manual loop sum  :", manual_sum)
+-- ==========================================================
+-- Question 4: Insert Sample Records
+-- ==========================================================
+INSERT INTO technologies (name, category, description) VALUES
+('Artificial Intelligence', 'Software', 'Machines performing intelligent tasks'),
+('Cloud Computing', 'Infrastructure', 'Services delivered over the internet');
 
 
-# ==========================================================
-# Question 6: Function for List Processing
-# ==========================================================
-print("\n--- Question 6 ---")
-def process_list(lst):
-    print("List    :", lst)
-    print("Sum     :", sum(lst))
-    print("Largest :", max(lst))
+-- ==========================================================
+-- Question 5: Display Records
+-- ==========================================================
+SELECT * FROM technologies;
 
-list1 = [10, 20, 30]
-list2 = [5, 15, 25, 35]
+==========================================================
+  Whole Combined Script (practical9.sql)
+==========================================================
 
-process_list(list1)
-process_list(list2)
+-- Create database if not exists and select it
+CREATE DATABASE IF NOT EXISTS TechnologyPortal;
+USE TechnologyPortal;
 
+-- Create technologies table
+CREATE TABLE IF NOT EXISTS technologies (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    category VARCHAR(80) NOT NULL,
+    description TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
 
-# ==========================================================
-# Question 7: Recursive Function - Factorial
-# ==========================================================
-print("\n--- Question 7 ---")
-def factorial(n):
-    if n == 0 or n == 1:
-        return 1
-    return n * factorial(n - 1)
+-- Insert sample records
+INSERT INTO technologies (name, category, description) VALUES
+('Artificial Intelligence', 'Software', 'Machines performing intelligent tasks'),
+('Cloud Computing', 'Infrastructure', 'Services delivered over the internet'),
+('Cyber Security', 'Security', 'Protecting systems and data'),
+('Internet of Things', 'Networking', 'Connected devices exchange data');
 
-num = 5
-print(f"Recursive Factorial of {num}: {factorial(num)}")
-
-# Comparison with iterative loop
-fact_loop = 1
-for i in range(1, num + 1):
-    fact_loop *= i
-print(f"Loop-based Factorial of {num}: {fact_loop}")
-
-
-# ==========================================================
-# Question 8: Recursive Fibonacci Series
-# ==========================================================
-print("\n--- Question 8 ---")
-def fibonacci(n):
-    if n <= 1:
-        return n
-    return fibonacci(n - 1) + fibonacci(n - 2)
-
-terms = 6
-print(f"Fibonacci series ({terms} terms):")
-for i in range(terms):
-    print(fibonacci(i), end=" ")
-print()
-
-
-# ==========================================================
-# Question 9: Function Calling Function
-# ==========================================================
-print("\n--- Question 9 ---")
-def get_number():
-    return int(input("Enter a number: "))
-
-def compute_square(num):
-    return num * num
-
-def display_result(res):
-    print("Calculated Square:", res)
-
-def main():
-    val = get_number()
-    ans = compute_square(val)
-    display_result(ans)
-
-main()
-
-
-# ==========================================================
-# Question 10: Variable Scope (Local vs Global)
-# ==========================================================
-print("\n--- Question 10 ---")
-count = 10
-
-def show():
-    global count
-    count = count + 5
-    print("Inside function (modified global):", count)
-
-show()
-print("Outside function:", count)
-
-
-# ==========================================================
-# Question 11: Menu-Driven Program using Functions
-# ==========================================================
-print("\n--- Question 11 ---")
-def addition():
-    a = float(input("Enter first number: "))
-    b = float(input("Enter second number: "))
-    print(f"Sum = {a + b}")
-
-def prime():
-    n = int(input("Enter a number to check prime: "))
-    if n <= 1:
-        print(f"{n} is Not Prime")
-        return
-    for i in range(2, int(n ** 0.5) + 1):
-        if n % i == 0:
-            print(f"{n} is Not Prime")
-            return
-    print(f"{n} is Prime")
-
-def calc_factorial():
-    n = int(input("Enter number for factorial: "))
-    fact = 1
-    for i in range(1, n + 1):
-        fact *= i
-    print(f"Factorial = {fact}")
-
-print("Menu:")
-print("1. Addition")
-print("2. Prime Check")
-print("3. Factorial")
-
-choice = int(input("Enter your choice (1-3): "))
-if choice == 1:
-    addition()
-elif choice == 2:
-    prime()
-elif choice == 3:
-    calc_factorial()
-else:
-    print("Invalid choice!")
-
-
-# ==========================================================
-# Question 12: Real-World Problem - Student Result System
-# ==========================================================
-print("\n--- Question 12 ---")
-def input_marks():
-    marks = []
-    for i in range(5):
-        m = float(input(f"Enter marks for subject {i + 1}: "))
-        marks.append(m)
-    return marks
-
-def calculate_results(marks):
-    total = sum(marks)
-    percentage = total / len(marks)
-    return total, percentage
-
-def get_grade(percentage):
-    if percentage >= 90:
-        return "A"
-    elif percentage >= 75:
-        return "B"
-    elif percentage >= 50:
-        return "C"
-    else:
-        return "Fail"
-
-def student_result_system():
-    marks = input_marks()
-    total, percentage = calculate_results(marks)
-    grade = get_grade(percentage)
-
-    print("\n--- Final Student Report ---")
-    print(f"Total Marks : {total}")
-    print(f"Percentage  : {percentage:.2f}%")
-    print(f"Grade       : {grade}")
-
-student_result_system()
+-- View structure and verify contents
+SHOW TABLES;
+DESCRIBE technologies;
+SELECT * FROM technologies;
